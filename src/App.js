@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { User, UserDetail, UserForm } from "./pages";
+import "./App.css";
+import { ApolloProvider } from "@apollo/client";
+import client from "./config/client";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <Router>
+          <h1>React Apollo-Client</h1>
+          <Link to="/">/User</Link> <Link to="/create">/Create</Link>
+          <hr />
+          <Switch>
+            <Route exact path="/" component={User} />
+            <Route exact path="/create" component={UserForm} />
+            <Route path="/:id" component={UserDetail} />
+          </Switch>
+        </Router>
+      </div>
+    </ApolloProvider>
   );
 }
 
