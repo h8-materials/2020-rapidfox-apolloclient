@@ -14,7 +14,7 @@ const ADD_USER = gql`
 `;
 
 export default () => {
-  const [addUser, { data, loading, error }] = useMutation(ADD_USER, {
+  const [addUser] = useMutation(ADD_USER, {
     refetchQueries: [
       {
         query: GET_USERS,

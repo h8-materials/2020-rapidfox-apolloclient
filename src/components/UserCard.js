@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { favoritesItems } from "../config/client";
 
 export default ({ user }) => {
   const history = useHistory();
@@ -8,7 +9,17 @@ export default ({ user }) => {
   };
 
   const addToFav = () => {
-    alert("unavailable");
+    const currentFavorites = favoritesItems();
+    favoritesItems([...currentFavorites, user]);
+    // const { favorites: currentFavorite } = client.readQuery({
+    //   query: GET_FAVORITES,
+    // });
+    // client.writeQuery({
+    //   query: GET_FAVORITES,
+    //   data: {
+    //     favorites: [...currentFavorite, user],
+    //   },
+    // });
   };
 
   return (
